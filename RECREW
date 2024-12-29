@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pagina con pulsanti di download</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: rgb(30, 30, 30);
+            color: white;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+        }
+        header {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 0;
+        }
+        nav {
+            margin: 20px 0;
+        }
+        nav a {
+            margin: 0 10px;
+            color: #4CAF50;
+            text-decoration: none;
+        }
+        nav a:hover {
+            text-decoration: underline;
+        }
+        section {
+            margin: 20px;
+        }
+        .download-button {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            margin: 10px;
+            font-size: 16px;
+            cursor: pointer;
+            border-radius: 5px;
+            text-decoration: none;
+        }
+        .download-button:hover {
+            background-color: #45a049;
+        }
+        footer {
+            background-color: #222;
+            color: white;
+            padding: 10px 0;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Pagina con pulsanti di download</h1>
+    </header>
+    <nav>
+        <a href="#downloads">Download</a>
+        <a href="#about">Chi sono</a>
+        <a href="#contact">Contatti</a>
+    </nav>
+    <section id="downloads">
+        <h2>Scarica i file</h2>
+        <a href="file1.zip" download class="download-button">Scarica File 1</a>
+        <a href="file2.zip" download class="download-button">Scarica File 2</a>
+        <a href="file3.zip" download class="download-button">Scarica File 3</a>
+    </section>
+    <section id="about">
+        <h2>Chi sono</h2>
+        <p>Mi chiamo [Il tuo nome] e questa è la mia pagina con pulsanti di download!</p>
+    </section>
+    <section id="contact">
+        <h2>Contatti</h2>
+        <p>Puoi contattarmi via email a <a href="mailto:tuoemail@example.com" style="color: #4CAF50;">tuoemail@example.com</a>.</p>
+    </section>
+    <footer>
+        <p>&copy; 2024 La mia pagina web. Tutti i diritti riservati.</p>
+    </footer>
+</body>
+</html>
