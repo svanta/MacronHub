@@ -1,0 +1,3 @@
+--https://linktr.ee/macronhub <-- Server Discord, PS: the key is in the discord server and is totaly free just enter in the server,
+--No LootLab / Linkversite or stuff like that
+loadstring(game:HttpGet('https://raw.githubusercontent.com/svanta/MacronHub/refs/heads/main/MacronHub'))()
