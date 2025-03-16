@@ -1,0 +1,66 @@
+--[[
+	WARNING: Heads up! This script has not been verified by ScriptBlox. Use at your own risk!
+]]
+local Players = game:GetService("Players")
+local RunService = game:GetService("RunService")
+local UserInputService = game:GetService("UserInputService")
+
+local player = Players.LocalPlayer
+local character = player.Character
+local humanoid = character:WaitForChild("Humanoid")
+local rootPart = character:WaitForChild("HumanoidRootPart")
+local camera = workspace.CurrentCamera
+
+humanoid.JumpPower = 60
+local forwardBoost = 20
+
+local hint = Instance.new("Hint")
+hint.Text = "the script has been executed. now flip off everyone!!! wait.."
+hint.Parent = game.Workspace
+wait(3)
+hint:Destroy()
+
+local function performFlip()
+	local isShiftLocked = player.DevEnableMouseLock and UserInputService.MouseBehavior == Enum.MouseBehavior.LockCenter
+	local lookVector = isShiftLocked and camera.CFrame.LookVector or rootPart.CFrame.LookVector
+	lookVector = Vector3.new(lookVector.X, 0, lookVector.Z).Unit
+	
+	local initialCFrame = rootPart.CFrame
+	
+	local jumpVelocity = Vector3.new(
+		lookVector.X * forwardBoost,
+		humanoid.JumpPower,
+		lookVector.Z * forwardBoost
+	)
+	humanoid:ChangeState(Enum.HumanoidStateType.Jumping)
+	rootPart.Velocity = jumpVelocity
+	
+	local flipDuration = 0.6
+	local startTime = tick()
+	local connection
+	
+	connection = RunService.RenderStepped:Connect(function(deltaTime)
+		local elapsed = tick() - startTime
+		
+		if elapsed < flipDuration then
+			local progress = elapsed / flipDuration
+			local rotationAngle = 360 * progress
+			
+			local rotation = CFrame.Angles(math.rad(rotationAngle), 0, 0)
+			rootPart.CFrame = CFrame.new(rootPart.Position) * (initialCFrame.Rotation * rotation)
+		else
+			connection:Disconnect()
+			local currentPos = rootPart.Position
+			local lookAt = currentPos + (isShiftLocked and camera.CFrame.LookVector or initialCFrame.LookVector)
+			rootPart.CFrame = CFrame.new(currentPos, lookAt)
+			rootPart.Velocity = Vector3.new(0, rootPart.Velocity.Y, 0)
+		end
+	end)
+end
+
+UserInputService.JumpRequest:Connect(function()
+	if humanoid:GetState() ~= Enum.HumanoidStateType.Jumping and 
+	   humanoid:GetState() ~= Enum.HumanoidStateType.Freefall then
+		performFlip()
+	end
+end)
