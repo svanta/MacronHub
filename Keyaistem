@@ -128,7 +128,8 @@ function Lib:Init(Settings)
 			end
 		end
 	end
-	Settings["Description"]=Settings["Decription"] or "Click \"Discord\" button to get your key! (no lootlabs linkversite shit like that)"--YOOOOOOOOOOOOOOOOOOOOOOOOO
+	Settings["Description"]=Settings["Decription"] or "Click Discord button to get your key!"--YOOOOOOOOOOOOOOOOOOOOOOOOO
+        Settings["Description"]=Settings["Decription"] or "No Lootlab, Likversite sh1t like that"--YOOOOOOOOOOOOOOOOOOOOOOOOO
 
 	-- Key system variable
 	local _5432Key543Entered7654 = false
